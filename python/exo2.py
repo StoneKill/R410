@@ -1,4 +1,6 @@
 def decal_lettre(lettre, x):
+    
+    if lettre.isalpha():
         return chr(ord(lettre) + (x%26))
-
-print(decal_lettre('A', 256))
+    else:
+        return lettre
