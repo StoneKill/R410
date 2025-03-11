@@ -1,0 +1,6 @@
+Vous rendrez un fichier texte reponse Caesar < votreclef > .txt chiffré le code César répondant aux questions suivantes:
+•Qui est l’auteur du texte ”Caesar crypted.txt” ? 
+- H.P. Lovecraft
+
+•Que représente l’objet découvert par le protagoniste de l’histoire ?
+- Le protagoniste trouve une statue en argile qui représente un rectangle approximatif avec des écriture ("hiéroglyphe") et au dessus de ces écritures, une silouhette d'un monstre.

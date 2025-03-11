@@ -32,5 +32,33 @@ def chiffre_cesar(message: str, decalage: int, chiffre: bool=True):
             newChaine += decal_lettre(char, -decalage)
         return newChaine
 
-def bruteForce_Caesar(message):
-    pass 
+
+def bruteForce_Caesar(message: str):
+    for i in range(25):
+        print(chiffre_cesar(message, i, False))
+
+
+
+def attaqueCaeser_stat(filename: str):
+    lettre_freq = dict()
+    with open(filename, 'r') as f:
+        content = f.read()
+    for char in content:
+        if char.isalpha():
+            if char in lettre_freq:
+                lettre_freq[char] += 1
+            else:
+                lettre_freq[char] = 1
+    
+    cle_max = list(lettre_freq.keys())[0]
+    val_max = list(lettre_freq.values())[0]
+    for cle, val, in lettre_freq.items():
+        if val > val_max:
+            val_max = val
+            cle_max = cle
+
+
+    with open(f"{filename}_{ord(cle_max) - ord('e')}_decrypted.txt", 'w') as F:
+        F.write(chiffre_cesar(content, ord(cle_max) - ord('e'), False))
+
+attaqueCaeser_stat('/home/adminetu/Bureau/TPCrypto_DEGRAY/caesar_encrypted.txt')
