@@ -2,20 +2,12 @@ def decal_lettre(lettre: str, x: int):
     # Si lettre n'est pas une lettre, on renvoit la lettre tel quel
     if not lettre.isalpha():
         return lettre
-    
 
-    if lettre.isupper():
-        # Vu que ord(A) = 65, pour normaliser on fait - 65
-        lettre_norm = ord(lettre) - 65
 
-        # On fait le décalage, on modulo 26 pour rester dans l'alphabet, on dénormalise et on retransforme en char
-        return chr(((lettre_norm + x) % 26) + 65)
-    else:
-        # Vu que ord(A) = 65, pour normaliser on fait - 97
-        lettre_norm = ord(lettre) - 97
-        
-        # On fait le décalage, on modulo 26 pour rester dans l'alphabet, on dénormalise et on retransforme en char
-        return chr(((lettre_norm + x) % 26)+ 97) 
+    if 65 <= ord(lettre) <= 90: # Si majuscule
+        return chr(((ord(lettre)-65 + (x%26)) %26)+ 65)
+    else: # Sinon (minuscule)
+        return chr(((ord(lettre)-97 + (x%26)) %26)+ 97)
 
 
 
