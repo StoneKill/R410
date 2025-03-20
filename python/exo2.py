@@ -53,4 +53,4 @@ def attaqueCaeser_stat(filename: str):
     with open(f"{filename}_{ord(cle_max) - ord('e')}_decrypted.txt", 'w') as F:
         F.write(chiffre_cesar(content, ord(cle_max) - ord('e'), False))
 
-attaqueCaeser_stat('/home/adminetu/Bureau/TPCrypto_DEGRAY/caesar_encrypted.txt')
+# attaqueCaeser_stat('/home/adminetu/Bureau/TPCrypto_DEGRAY/caesar_encrypted.txt')
