@@ -1,3 +1,7 @@
+from random import *
+from exo1_copie import PGCD
+from fonction_RSA import inverse_modulo
+
 def crible_eratosthene(n: int) -> list[int]:
     liste = [True] * (n+1)
     liste[0],liste[1] = False, False # 0 et 1 sont premier
@@ -43,8 +47,32 @@ def signer_rsa(message:int, expo_pub:int, modulo: int) -> int:
 def signature_rsa_est_valide(message:int, signature, expo_pub:int, modulo:int):
     return message == (signature**expo_pub)%modulo
 
-print(signature_rsa_est_valide(42,70,3,187))
-print(signature_rsa_est_valide(45,70,3,187))
+# print(signature_rsa_est_valide(42,70,3,187))
+# print(signature_rsa_est_valide(45,70,3,187))
 
 def generer_clef_rsa():
-    pass
+    nb_premier = crible_eratosthene(100)  
+    p, q = choice(nb_premier), choice(nb_premier)
+
+    
+    while p == q:
+        q = choice(nb_premier)
+    
+    N = p * q  # Modulo N
+    phi_N = (p - 1) * (q - 1)  # Euler's totient function
+    
+    # Choose a public exponent e
+    e = 3  # Typically 3 or 65537
+    while e >= phi_N or PGCD(e, phi_N) != 1:
+        e = choice([3, 5, 17, 257, 65537])  # Ensure e is coprime with φ(N)
+    
+    # Compute the private exponent d
+    d = inverse_modulo(e, phi_N)  # d is the modular inverse of e modulo φ(N)
+
+    print(f"Public Key: (e={e}, N={N})")
+    print(f"Private Key: (d={d}, N={N})")
+    
+    return (e, N), (d, N)  # Return the public and private keys
+    
+
+generer_clef_rsa()
