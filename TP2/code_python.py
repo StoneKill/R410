@@ -1,0 +1,50 @@
+def crible_eratosthene(n: int) -> list[int]:
+    liste = [True] * (n+1)
+    liste[0],liste[1] = False, False # 0 et 1 sont premier
+    
+    for i in range(2,n): # On parcourt la liste à partir de 2 car 0 et 1 sont premier
+        j = i+i # On fait les multiples de i
+        while j < len(liste): # Tant que j est dans la liste
+            liste[j] = False # On dit que j (multiple de i) n'est pas 1er
+            j += i # Et on fait le prochain multiple de i
+    
+    vraie_liste = []
+
+    for i in range(len(liste)):
+        if liste[i]:
+            vraie_liste.append(i) # On transforme notre liste de bool en liste de nmbr
+
+    return vraie_liste
+
+
+
+
+# Exemple d'utilisation :
+# print(crible_eratosthene(30)) # [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
+
+
+M = 42 # Message
+D = 107 # L'exposant privé
+N = 187 # Modulo
+
+S = (M**D)%N
+
+E = 3 # Exposant public
+
+'''if __name__ == "__main__":
+    print(f'La signature : {(S**E)%N}')
+    print(f'Le message : {M}')
+    print(f'Donc la vérification = {(S**E)%N == M}')
+'''
+
+def signer_rsa(message:int, expo_pub:int, modulo: int) -> int:
+    return (message**expo_pub)%modulo
+
+def signature_rsa_est_valide(message:int, signature, expo_pub:int, modulo:int):
+    return message == (signature**expo_pub)%modulo
+
+print(signature_rsa_est_valide(42,70,3,187))
+print(signature_rsa_est_valide(45,70,3,187))
+
+def generer_clef_rsa():
+    pass
