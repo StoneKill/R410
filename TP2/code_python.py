@@ -61,18 +61,16 @@ def generer_clef_rsa():
     N = p * q  # Modulo N
     phi_N = (p - 1) * (q - 1)  # Euler's totient function
     
-    # Choose a public exponent e
-    e = 3  # Typically 3 or 65537
-    while e >= phi_N or PGCD(e, phi_N) != 1:
-        e = choice([3, 5, 17, 257, 65537])  # Ensure e is coprime with φ(N)
     
-    # Compute the private exponent d
-    d = inverse_modulo(e, phi_N)  # d is the modular inverse of e modulo φ(N)
+    e = 3
+    
+    # calc de l'exposant prvié
+    d = inverse_modulo(e, phi_N)
 
-    print(f"Public Key: (e={e}, N={N})")
-    print(f"Private Key: (d={d}, N={N})")
+    print(f"Clé Pub: (e={e}, N={N})")
+    print(f"Clé Priv: (d={d}, N={N})")
     
-    return (e, N), (d, N)  # Return the public and private keys
+    return (e, d, N)  # renvois des clés
     
 
 generer_clef_rsa()
